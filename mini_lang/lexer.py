@@ -92,35 +92,28 @@ def t_error(t):
 
 # Input source code
 data = '''
-// This is a single-line comment
-/* This is a 
-multi-line comment */
-int x = 10;
-float y = 3.14;
-bool z = true;
-str s = "hello";
-function add(a, b) {
-    // Adding two numbers
-    return a + b;
-}
-
-f = "hello";
-x = true;
-y = 3.14;
-z = 10;
-function main(){
+    int x;
+    float y = 3.14;
+    bool z = true;
+    str s = "hello";
     x = 5;
-    y = 2;
-    z = add(x, y);
-    while (x >= y) {
-        x = x - 1;
+    x = x-1;
+    int function add(int a, int b) {
+        return a + b;
     }
-    if (x != 0) {
-        print("Done");
-    } else {
-        print("Not Done");
+    int f = add(1, 2);
+    int function sub() {
+        print("Hello");
+        return 1;
     }
-}
+    sub();
+    while (x < 10) {
+        print(x);
+        x = x + 1;
+    }
+    if (x == 10) {
+        print(x);
+    }
 '''
 
 # Create the lexer

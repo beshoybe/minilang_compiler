@@ -221,6 +221,7 @@ if __name__=='__main__':
     int function sub() {
         print("Hello");
         return 1;
+        print("Hello");
     }
     sub();
     while (x < 10) {
@@ -233,6 +234,7 @@ if __name__=='__main__':
     '''
     from parser import parser
     ast = parser.parse(data)
+    print(ast)
     ir_generator = IRGenerator()
     ir_instructions = ir_generator.generate(ast)
     print(ir_instructions)

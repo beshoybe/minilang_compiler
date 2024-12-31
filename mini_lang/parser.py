@@ -273,37 +273,28 @@ parser = yacc.yacc()
 # Test the parser with variable declaration (with type)
 if __name__ == '__main__':
     data = '''
-    int b;
-    int x = 5;
-    b = 10;
+    int x;
     float y = 3.14;
     bool z = true;
     str s = "hello";
-    int function add(int a,int b) {
-        int nn = a + b;
-        return nn;
+    x = 5;
+    x = x-1;
+    int function add(int a, int b) {
+        return a + b;
     }
-    add(1, 2);
-    int function sub(float f){
+    int f = add(1, 2);
+    int function sub() {
         print("Hello");
-        }
-    
-    while (x < y) {
+        return 1;
+    }
+    sub();
+    while (x < 10) {
         print(x);
         x = x + 1;
     }
-    
-    if (x > y) {
-        print("x is greater");
-    } else {
-
-        print("y is greater");
+    if (x == 10) {
+        print(x);
     }
-    x = add(1, 3);
-    
-    print(x);
-    print(z);
-    input(b);
     '''
     print("Parsing input...")
     ast = parser.parse(data)

@@ -4,6 +4,8 @@ class IROptimizer:
     def __init__(self):
         self.optimized_instructions = []
         self.variable_values = {}  # Keeps track of variable values (for constant folding)
+        self.in_function = False  # Flag to track if we are inside a function
+        self.after_return = False  # Flag to track if we encountered a return in the function
 
     def optimize(self, instructions):
         """Optimize the given list of instructions."""
@@ -14,6 +16,26 @@ class IROptimizer:
 
     def optimize_instruction(self, instruction):
         """Optimize individual instruction."""
+        # Handle entering a function
+        if instruction.op == 'label' and instruction.args[0].startswith('func_'):
+            self.in_function = True
+            self.after_return = False  # Reset after_return flag when entering a new function
+
+        # Handle exiting a function
+        if instruction.op == 'label' and self.in_function and instruction.args[0].startswith('end_func_'):
+            self.in_function = False
+            self.after_return = False  # Reset after exiting the function
+
+        # If inside a function and after return, skip further instructions
+        if self.in_function and self.after_return:
+            return
+
+        # Handle return inside a function: mark that we're after the return statement
+        if self.in_function and instruction.op == 'return':
+            self.after_return = True
+            self.optimized_instructions.append(instruction)  # Keep the return statement
+            return
+        
         # Apply constant folding
         if instruction.op in ('+', '-', '*', '/'):
             # Check if both arguments are constants
@@ -86,11 +108,11 @@ if __name__ == '__main__':
     }
     int function add(int x, int y) {
         return x + y;
+        print("Hello");  
     }
     int d = add(1, 2);
     print(d);
-
-'''
+    '''
     from parser import parser
     from ir_generator import IRGenerator
     ast = parser.parse(data)
