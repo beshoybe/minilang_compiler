@@ -45,8 +45,8 @@ IR-Code-Generation/
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/IR-Code-Generation.git
-   cd IR-Code-Generation
+   git clone https://github.com/beshoybe/minilang_compiler
+   cd minilang_compiler
    ```
 
 2. No dependencies are required. You can run the scripts directly with Python 3.
