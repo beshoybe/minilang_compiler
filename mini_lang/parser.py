@@ -8,38 +8,6 @@ def add_variable_to_symbol_table(identifier, var_type):
         raise Exception(f"Variable '{identifier}' is already declared.")
     symbol_table[identifier] = var_type
 
-# def check_type(value):
-    
-#     if isinstance(value, (int, float, bool)):
-#         #remove .0 from float
-#         if(isinstance(value, float)):
-#             if(value.is_integer()):
-#                 return 'int'
-#             else:
-#                 return 'float'
-#         return type(value).__name__  # Return 'int', 'float', or 'bool'
-#     elif isinstance(value, str):  # String value
-#         return 'str'
-#     elif isinstance(value, tuple):  # Handle compound expressions (like 'x + 1')
-#         #check if one of them is variable
-#         new_tuple = []
-#         if(value[0] in symbol_table):
-#             new_tuple.append(symbol_table[value[0]])
-#         else:
-#             new_tuple.append(check_type(value[0]))
-#         if(value[2] in symbol_table):
-#             new_tuple.append(symbol_table[value[2]])
-#         else:
-#             new_tuple.append(check_type(value[2]))
-#         # Check the type recursively (e.g., for 'x + 1')
-#         left_type = new_tuple[0]
-#         right_type = new_tuple[1]
-        
-#         if left_type != right_type:
-#             print(value)
-#             raise Exception(f"Type mismatch: cannot operate on '{left_type}' and '{right_type}' in '{value[1]}' expression.")
-#         return left_type
-#     return 'unknown'
 # AST node classes
 
 class VariableDeclaration:
